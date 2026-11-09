@@ -1,0 +1,438 @@
+* {
+    padding: 0;
+    margin : 0;
+}
+
+:root {
+    /* 1. Surfaces & Fonds */
+    --bg-primary: #F0F4F8;
+    /* Gris-bleu très pâle / brume froide (fond de page) */
+    --bg-surface: #FFFFFF;
+    /* Blanc pur (cards d'objets, faire-part) */
+    --bg-header : #1d3a52;
+    /* Bleu nuit océanique très sombre (en-tête & footer) */
+    --bg-input  : #FFFFFF;
+    /* Fond du champ de recherche */
+
+    /* 2. Textes & Typographie */
+    --text-header : #FFFFFF;
+    /* Blanc pour la navigation du bandeau */
+    --text-main   : #142838;
+    /* Bleu nuit profond pour les titres principaux */
+    --text-body   : #1E2328;
+    /* Noir graphite adouci pour les descriptions et dates */
+    --text-muted  : #536270;
+    /* Gris ardoise pour les prix et filtres */
+    --text-subtle : #7A8B99;
+    /* Gris bleuté pour les mentions secondaires */
+    --text-on-dark: #FFFFFF;
+    /* Blanc pour l'intérieur des boutons */
+
+    /* 3. Boutons & Accents cliquables */
+    --accent-btn      : #1B364A;
+    /* Bleu pétrole sombre (boutons "Ajouter au panier") */
+    --accent-btn-hover: #0F202D;
+    /* Bleu nuit encore plus profond au survol */
+    --accent-focus    : #2B5777;
+    /* Bleu intermédiaire pour le focus et les bordures actives */
+
+    /* 4. Bordures & Encadrements stricts (style pince-sans-rire) */
+    --border-thick: 3px solid #142838;
+    /* Cadre extérieur du faire-part */
+    --border-thin : 1px solid #c49f4a;
+    /* Cadres des cards produits et filets */
+    --border-light: 1px solid #C5D2DC;
+    /* Séparateurs discrets et contours d'inputs */
+
+    /* 5. Géométrie */
+    --border-radius: 1.7rem;
+    /* Coins très légèrement adoucis */
+    --shadow-card  : #dfbe6f79;
+    /* Sans ombre pour garder l'aspect net et rigide */
+}
+
+body {
+    color              : var(--text-body);
+    /* background-image: url("img/brown-watercolor-leaf-background-aesthetic-autumn-season.jpg"); */
+    width              : 100%;
+    height             : 500px;
+    /* Ajustez la hauteur souhaitée */
+    object-fit         : cover;
+    /* Recadre proprement sans étirer */
+    margin             : 0;
+    padding            : 0;
+
+}
+
+nav {
+    display         : flex;
+    padding         : 1.5rem;
+    font-size       : 1.1rem;
+    background-color: var(--bg-header);
+    color           : var(--text-header);
+    align-items     : center;
+    justify-content : space-between;
+
+    .logo-container {
+        display    : flex;
+        align-items: center;
+        gap        : 1rem;
+    }
+
+    img.logo {
+        display: block;
+        width  : 10rem;
+        height : auto;
+    }
+
+    .site-title {
+        font-weight   : bold;
+        letter-spacing: 1px;
+    }
+
+    ul {
+        list-style-type: none;
+        display        : flex;
+        gap            : 2rem;
+
+    }
+
+    a {
+        color          : var(--color-a-nav);
+        text-decoration: none;
+        transition     : color 0.2s ease;
+        font-size      : 1.5rem;
+    }
+
+    span {
+        max-width: 30dvh;
+        font-size: 2.5dvh;
+    }
+}
+
+header {
+    h1 {
+        position     : absolute;
+        display      : flex;
+        justify-self : center;
+        align-content: center;
+        margin-top   : 4rem;
+        font-size    : 3.5rem;
+        color        : #cda84f
+    }
+
+    p {
+        position    : absolute;
+        display     : flex;
+        justify-self: center;
+        align-self  : center;
+        margin-top  : 30rem;
+        font-size   : 2rem;
+        max-width   : 105dvh;
+        text-align  : center;
+        color       : var(--text-header);
+
+
+    }
+
+    .hero-banner {
+        width  : 100%;
+        margin : 0;
+        padding: 0;
+    }
+
+    img {
+        width     : 100%;
+        height    : 500px;
+        object-fit: cover;
+        display   : block;
+        box-shadow: 0.3rem 0.9rem 1.1rem 0.2rem var(--shadow-card);
+    }
+
+}
+
+#Cercueil {
+    h2 {
+        display      : flex;
+        margin-top   : 10rem;
+        margin-left  : 20rem;
+        margin-bottom: 2.5rem;
+        font-size    : 2rem;
+    }
+
+    .container-card {
+        padding        : 1rem;
+        display        : flex;
+        gap            : 1rem;
+        justify-content: center;
+        justify-items  : center;
+    }
+
+    .card {
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+        border        : var(--border-thin);
+        border-radius : var(--border-radius);
+        width         : 20rem;
+        overflow      : hidden;
+        box-shadow    : 0.3rem 0.3rem 1.1rem 0.2rem var(--shadow-card);
+        margin        : 1rem;
+        padding       : 1rem;
+        perspective   : 800px;
+        position      : relative;
+        /* ajouté */
+        cursor        : pointer;
+        /* ajouté */
+        transition    : transform 0.8s ease;
+        /* ajouté */
+
+        input {
+            /* ajouté : case cachée */
+            display: none;
+        }
+
+        &:has(input:checked) {
+            /* remplace ton &:active */
+            transform: scaleX(-1);
+
+            .card-header,
+            .card-body {
+                opacity   : 0;
+                transition: opacity 0s 0.4s;
+            }
+
+            .face {
+                opacity   : 1;
+                transition: opacity 0s 0.4s;
+            }
+        }
+
+        .card-header {
+            display       : flex;
+            flex-direction: row;
+            font-size     : 2.5dvh;
+        }
+
+        .card-body {
+            padding         : 1rem;
+            display         : flex;
+            flex-direction  : column;
+            gap             : 1rem;
+            background-color: var(--bg-surface);
+
+            img {
+                width           : 100%;
+                height          : 200px;
+                object-fit      : contain;
+                background-color: transparent;
+            }
+
+            p {
+                color      : var(--text-body);
+                font-size  : 1rem;
+                line-height: 1.4;
+                margin     : 0;
+            }
+
+            h4 {
+                color          : var(--text-body);
+                font-size      : 3dvh;
+                display        : flex;
+                justify-content: end;
+            }
+        }
+
+        .face {
+            position        : absolute;
+            inset           : 0;
+            display         : flex;
+            flex-direction  : column;
+            /* ajouté       : empile les h5 / p */
+            align-items     : center;
+            justify-content : center;
+            gap             : 0.5rem;
+            /* ajouté */
+            padding         : 2rem;
+            text-align      : center;
+            background-color: var(--bg-surface);
+            color           : var(--text-body);
+            border-radius   : var(--border-radius);
+            transform       : scaleX(-1);
+            opacity         : 0;
+
+            h5 {
+                /* ajouté */
+                font-size: 1.1rem;
+                margin   : 0;
+            }
+
+            p {
+                margin    : 0 0 1rem;
+                /* ajouté : espace avant le h5 suivant */
+            }
+        }
+    }
+}
+
+#Faire_Part {
+    h2 {
+        margin-top   : 4rem;
+        font-size    : 2rem;
+        margin-left  : 20rem;
+        margin-bottom: 2.5rem;
+
+    }
+
+    .container-card {
+        padding        : 1rem;
+        display        : flex;
+        gap            : 1rem;
+        justify-content: center;
+        justify-items  : center;
+    }
+
+    .card {
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+        border        : var(--border-thin);
+        border-radius : var(--border-radius);
+        width         : 20rem;
+        overflow      : hidden;
+        box-shadow    : 0.3rem 0.3rem 1.1rem 0.2rem var(--shadow-card);
+        margin        : 1rem;
+        padding       : 1rem;
+
+    }
+
+    .card-header {
+        display       : flex;
+        flex-direction: row;
+        font-size     : 2.5dvh;
+
+    }
+
+
+    .card-body {
+        padding         : 2.5rem;
+        display         : flex;
+        flex-direction  : column;
+        gap             : 1rem;
+        background-color: var(--bg-surface);
+        transition      : 2s;
+
+
+        img {
+            width           : 100%;
+            height          : 200px;
+            object-fit      : contain;
+            background-color: transparent;
+        }
+
+        p {
+            color      : var(--text-body);
+            font-size  : 1rem;
+            line-height: 1.4;
+            margin     : 0;
+        }
+
+        &:active {
+            transform : scale(1.6);
+            transition: 1s;
+
+        }
+
+    }
+}
+
+#Fleurs {
+    h2 {
+        margin-top   : 4rem;
+        font-size    : 2rem;
+        margin-left  : 20rem;
+        margin-bottom: 2.5rem;
+
+    }
+
+    .container-card {
+        padding        : 1rem;
+        display        : flex;
+        gap            : 1rem;
+        justify-content: center;
+        justify-items  : center;
+    }
+
+    .card {
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+        border        : var(--border-thin);
+        border-radius : var(--border-radius);
+        width         : 20rem;
+        overflow      : hidden;
+        box-shadow    : 0.3rem 0.3rem 1.1rem 0.2rem var(--shadow-card);
+        margin        : 1rem;
+        padding       : 1rem;
+
+
+    }
+
+    .card-header {
+        display       : flex;
+        flex-direction: row;
+        font-size     : 2.5dvh;
+
+    }
+
+
+    .card-body {
+        padding         : 2.5rem;
+        display         : flex;
+        flex-direction  : column;
+        gap             : 1rem;
+        background-color: var(--bg-surface);
+
+
+        img {
+            width           : 100%;
+            height          : 200px;
+            object-fit      : contain;
+            background-color: transparent;
+        }
+
+        p {
+            color      : var(--text-body);
+            font-size  : 1rem;
+            line-height: 1.4;
+            margin     : 0;
+        }
+    }
+
+
+}
+
+#Contact {
+    h2 {
+        margin-top   : 4rem;
+        font-size    : 2rem;
+        margin-left  : 20rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+footer {
+    width           : 100%;
+    background-color: var(--bg-header);
+    padding         : 2.5rem 1rem;
+    text-align      : center;
+    margin-top      : 4rem;
+    box-sizing      : border-box;
+
+    p {
+        color         : #FAF7F2;
+        font-size     : 0.95rem;
+        letter-spacing: 0.5px;
+        margin        : 0;
+    }
+}
